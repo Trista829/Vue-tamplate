@@ -1,0 +1,121 @@
+@import "./rem";
+@import "./variables";
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: $bg-color;
+    color: $main-font-color;
+    line-height: 1.5;
+}
+
+blockquote,
+body,
+button,
+code,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+// 单行文本不换行显示省略号
+.text-overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.btn-container {
+    text-align: center;
+
+    .van-button {
+        width: 92%;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.vertical-align {
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.clear-both {
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+// 主要是图片的样式
+.tip-icon {
+    width: rem(100px);
+}
+
+.main-font-color {
+    color: $main-font-color;
+}
+
+.minor-font-color {
+    color: $minor-font-color
+}
+
+.desc-font-color {
+    color: $desc-font-color;
+}
+
+.font-size-24 {
+    font-size: rem(24px);
+}
+
+.font-size-26 {
+    font-size: rem(26px);
+}
+
+.font-size-28 {
+    font-size: rem(28px);
+}
+
+.font-size-30 {
+    font-size: rem(30px);
+}

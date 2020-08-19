@@ -5,7 +5,7 @@ const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 开�
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i; // 开启gzip压缩， 按需写入
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin; // 打包分析
 
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
+const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
@@ -34,38 +34,41 @@ module.exports = {
       .set("@assets", resolve("src/assets"))
       .set("@components", resolve("src/components"))
       .set("@views", resolve("src/views"))
-      .set("@store", resolve("src/store"));
+      .set("@store", resolve("src/store"))
+      .set("@router", resolve("src/router"));
     // 压缩图片
     // 需要 npm i -D image-webpack-loader
-    config.module
-      .rule("images")
-      .use("image-webpack-loader")
-      .loader("image-webpack-loader")
-      .options({
-        mozjpeg: {
-          progressive: true,
-          quality: 65
-        },
-        optipng: {
-          enabled: false
-        },
-        pngquant: {
-          quality: [0.65, 0.9],
-          speed: 4
-        },
-        gifsicle: {
-          interlaced: false
-        },
-        webp: {
-          quality: 75
-        }
-      });
+    // config.module
+    //   .rule("images")
+    //   .use("image-webpack-loader")
+    //   .loader("image-webpack-loader")
+    //   .options({
+    //     mozjpeg: {
+    //       progressive: true,
+    //       quality: 65
+    //     },
+    //     optipng: {
+    //       enabled: false
+    //     },
+    //     pngquant: {
+    //       quality: [0.65, 0.9],
+    //       speed: 4
+    //     },
+    //     gifsicle: {
+    //       interlaced: false
+    //     },
+    //     webp: {
+    //       quality: 75
+    //     }
+    //   });
     // 打包分析
     // 打包之后自动生成一个名叫report.html文件(可忽视)
     if (IS_PROD) {
-      config.plugin("webpack-report").use(BundleAnalyzerPlugin, [{
-        analyzerMode: "static"
-      }]);
+      config.plugin("webpack-report").use(BundleAnalyzerPlugin, [
+        {
+          analyzerMode: "static"
+        }
+      ]);
     }
   },
   configureWebpack: config => {
@@ -89,7 +92,7 @@ module.exports = {
   },
   css: {
     extract: IS_PROD, // 提取 CSS 在开发环境模式下是默认不开启的，因为它和 CSS 热重载不兼容。生产环境下是 true，开发环境下是 false
-    requireModuleExtension: false, // 去掉文件名中的 .module
+    // requireModuleExtension: false, // 去掉文件名中的 .module，会导致引入组件库的样式不能使用
     loaderOptions: {
       // 给 less-loader 传递 Less.js 相关选项
       less: {
